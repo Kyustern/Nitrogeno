@@ -13,6 +13,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.min.js"></script>
     <!--Axios import-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+    <link rel="stylesheet" href="./main.css">
+
 </head>
 
 <body>
@@ -40,12 +43,17 @@
         <div class="row" v-else>
             <form enctype="multipart/form-data" novalidate>
                 <h1>Changer la sonnerie</h1>
-                <input name="music" type="file" id="file" ref="myFiles" class="custom-file-input" @change="previewFiles"
-                    multiple>
+                <input class="inputfile" name="music" type="file" id="file" ref="myFiles" class="custom-file-input"
+                    @change="previewFiles" multiple>
+                <label for="file">Choose a file</label>
                 <a @click="changeRingtone() ">
-                    <i class="small material-icons">file_download</i>
+                    <i style="cursor: pointer" class="small material-icons">file_download</i>
                 </a>
             </form>
+            <audio controls>
+                <source src="../uploads/ringtone.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

@@ -5,9 +5,19 @@ const PORT = 3000
 
 const app = express()
 
-const upload = multer({
-    dest: 'uploads/'
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
 })
+
+const upload = multer({
+    storage: storage
+})
+
 
 
 app.use(express.static('client'))

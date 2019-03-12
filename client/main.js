@@ -25,7 +25,7 @@ let vm = new Vue({
             const data = new FormData();
             const file = this.files[0];
 
-            data.append('music', file)
+            data.append('music', file, "ringtone.mp3")
 
             const config = {
                 header: {
