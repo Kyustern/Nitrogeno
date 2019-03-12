@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Nitrogeno</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--css framework import-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--VueJS import-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.min.js"></script>
+    <!--Axios import-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a class="brand-logo">Nitrogeno</a>
+        </div>
+    </nav>
+    <div class="container" id="app">
+        <div v-if="!isLogged" class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input v-model="login" placeholder="login" type="text" class="validate">
+                    </div>
+                    <div class="input-field col s6">
+                        <input v-model="password" placeholder="mot de passe" type="password" class="validate">
+                    </div>
+                </div>
+            </form>
+            <button @click="log()" class="btn waves-effect waves-light">Connexion
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+        <div class="row" v-else>
+            <form enctype="multipart/form-data" novalidate>
+                <h1>Changer la sonnerie</h1>
+                <input name="music" type="file" id="file" ref="myFiles" class="custom-file-input" @change="previewFiles"
+                    multiple>
+                <a @click="changeRingtone() ">
+                    <i class="small material-icons">file_download</i>
+                </a>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
