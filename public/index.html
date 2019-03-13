@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Nitrogeno</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="./assets//bell-icon.png" type="image/x-icon">
     <!--css framework import-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -13,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.min.js"></script>
     <!--Axios import-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-
+    <!--Custom css import-->
     <link rel="stylesheet" href="./main.css">
 </head>
 
@@ -25,61 +26,59 @@
             </div>
         </nav>
         <div id="app">
-
-            <div v-if="!isLogged" class="row">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input v-model="login" placeholder="login" type="text" class="validate">
+            <transition name="fade" mode="out-in">
+                <div key="log" v-if="!isLogged" class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input v-model="login" placeholder="login" type="text" class="validate">
+                            </div>
+                            <div class="input-field col s6">
+                                <input v-model="password" placeholder="mot de passe" type="password" class="validate">
+                            </div>
                         </div>
-                        <div class="input-field col s6">
-                            <input v-model="password" placeholder="mot de passe" type="password" class="validate">
-                        </div>
-                    </div>
-                </form>
-                <button @click="log()" class="btn waves-effect waves-light">Connexion
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
-
-            <div class="row" v-else>
-                <div class="col s6">
-                    <form enctype="multipart/form-data" novalidate>
-                        <h1>Changer la sonnerie</h1>
-                        <div v-if="choosen === 1">
-                            <label for="file" class="label-file">Choisir une nouvelle sonnerie</label>
-                            <input class="input-file" name="music" type="file" id="file" ref="myFiles" class="custom-file-input"
-                                @change="previewFiles" multiple>
-                        </div>
-                        <a v-else-if="choosen === 2" @click="changeRingtone()" class="waves-effect waves-light btn-large">
-                            <i class="material-icons left">arrow_forward</i>
-                            Valider
-                        </a>
-                        <div v-else>
-                            <p>
-                                Sonnerie changée !
-                            </p>
-                        </div>
-                        <div v-if="progress" class="progress">
-                            <div class="indeterminate"></div>
-                        </div>
-
                     </form>
+                    <button @click="log()" class="btn waves-effect waves-light">Connexion
+                        <i class="material-icons right">send</i>
+                    </button>
                 </div>
-                <div class="col s6" id="listen">
-                    <h1>Ecouter la sonnerie actuelle</h1>
-                    <figure>
-                        <audio controls src="/uploads/ringtone.mp3">
-                            Your browser does not support the
-                            <code>audio</code> element.
-                        </audio>
-                    </figure>
+                <div key="ui" class="row" v-else>
+                    <div class="col s6">
+                        <form enctype="multipart/form-data" novalidate>
+                            <h1>Changer la sonnerie</h1>
+                            <transition name="fade" mode="out-in">
+                                <div key="1" v-if="choosen === 1">
+                                    <label for="file" class="label-file">Choisir une nouvelle sonnerie</label>
+                                    <input class="input-file" name="music" type="file" id="file" ref="myFiles" class="custom-file-input"
+                                        @change="previewFiles" multiple>
+                                </div>
+                                <a key="2" v-else-if="choosen === 2" @click="changeRingtone()" class="waves-effect waves-light btn-large">
+                                    <i class="material-icons left">arrow_forward</i>
+                                    Valider
+                                </a>
+                                <div key="3" v-else>
+                                    <p>
+                                        Sonnerie changée !
+                                    </p>
+                                </div>
+                            </transition>
+                            <div v-if="progress" class="progress">
+                                <div class="indeterminate"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col s6" id="listen">
+                        <h1>Ecouter la sonnerie actuelle</h1>
+                        <figure>
+                            <audio controls src="/uploads/ringtone.mp3">
+                                Your browser does not support the
+                                <code>audio</code> element.
+                            </audio>
+                        </figure>
+                    </div>
                 </div>
-            </div>
-
+            </transition>
         </div>
-
-
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="main.js"></script>
