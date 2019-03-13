@@ -1,3 +1,5 @@
 node_modules
 
 config/keys.js
+
+public/uploads/ringtone.mp3

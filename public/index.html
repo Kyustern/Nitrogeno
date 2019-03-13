@@ -9,13 +9,13 @@
     <link rel="shortcut icon" href="./assets//bell-icon.png" type="image/x-icon">
     <!--css framework import-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./style/materialize.css">
     <!--VueJS import-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.min.js"></script>
+    <script src="./js//vue.js"></script>
     <!--Axios import-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="./js/axios.js"></script>
     <!--Custom css import-->
-    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./style/main.css">
 </head>
 
 <body>
@@ -57,9 +57,9 @@
                                     Valider
                                 </a>
                                 <div key="3" v-else>
-                                    <p>
+                                    <h3>
                                         Sonnerie changée !
-                                    </p>
+                                    </h3>
                                 </div>
                             </transition>
                             <div v-if="progress" class="progress">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="col s6" id="listen">
                         <h1>Ecouter la sonnerie actuelle</h1>
-                        <figure>
+                        <figure id="player">
                             <audio controls src="/uploads/ringtone.mp3">
                                 Your browser does not support the
                                 <code>audio</code> element.
@@ -80,8 +80,8 @@
             </transition>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="main.js"></script>
+    <script src="./js/materialize.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

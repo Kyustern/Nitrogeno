@@ -2,6 +2,10 @@ body {
 	background-color: #e1f5fe;
 }
 
+h3 {
+	color: gray
+}
+
 #app {
 	margin-top: 10%
 }
