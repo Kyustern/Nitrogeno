@@ -10,8 +10,8 @@ let vm = new Vue({
   },
   methods: {
     reloadPlayer() {
-      var container = document.getElementById("player");
-      var content = container.innerHTML;
+      const container = document.getElementById("player");
+      const content = container.innerHTML;
       container.innerHTML = content;
     },
     async log() {
