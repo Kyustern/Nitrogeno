@@ -1,0 +1,17 @@
+#app {
+	margin-top: 10%
+}
+
+.label-file {
+	cursor: pointer;
+	color: #00b1ca;
+	font-size: 26px;
+}
+
+.label-file:hover {
+	color: #25a5c4;
+}
+
+.input-file {
+	display: none;
+}
