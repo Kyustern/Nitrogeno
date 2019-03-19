@@ -6,19 +6,17 @@ const PORT = 3000
 const app = express()
 
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/uploads/')
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname)
-    }
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
 })
 
 const upload = multer({
-    storage: storage
+  storage: storage
 })
-
-
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
@@ -29,5 +27,6 @@ require('./routes/authRoute')(app)
 // UPLOAD ROUTE
 require('./routes/uploadRoute')(app, upload)
 
-
-app.listen(PORT)
+app.listen(PORT, () => {
+  console.log(`[[Server is running on port ${PORT}]]`)
+})

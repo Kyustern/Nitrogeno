@@ -1,87 +1,119 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Nitrogeno</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="./assets//bell-icon.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      href="./assets//bell-icon.png"
+      type="image/x-icon"
+    />
     <!--css framework import-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="./style/materialize.css">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style/materialize.css" />
     <!--VueJS import-->
     <script src="./js//vue.js"></script>
     <!--Axios import-->
     <script src="./js/axios.js"></script>
     <!--Custom css import-->
-    <link rel="stylesheet" href="./style/main.css">
-</head>
+    <link rel="stylesheet" href="./style/main.css" />
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <nav>
-            <div class="nav-wrapper">
-                <a class="brand-logo">Nitrogeno</a>
-            </div>
-        </nav>
-        <div id="app">
-            <transition name="fade" mode="out-in">
-                <div key="log" v-if="!isLogged" class="row">
-                    <form class="col s12">
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input v-model="login" placeholder="login" type="text" class="validate">
-                            </div>
-                            <div class="input-field col s6">
-                                <input v-model="password" placeholder="mot de passe" type="password" class="validate">
-                            </div>
-                        </div>
-                    </form>
-                    <button @click="log()" class="btn waves-effect waves-light">Connexion
-                        <i class="material-icons right">send</i>
-                    </button>
-                </div>
-                <div key="ui" class="row" v-else>
-                    <div class="col s6">
-                        <form enctype="multipart/form-data" novalidate>
-                            <h1>Changer la sonnerie</h1>
-                            <transition name="fade" mode="out-in">
-                                <div key="1" v-if="choosen === 1">
-                                    <label for="file" class="label-file">Choisir une nouvelle sonnerie</label>
-                                    <input class="input-file" name="music" type="file" id="file" ref="myFiles" class="custom-file-input"
-                                        @change="previewFiles" multiple>
-                                </div>
-                                <a key="2" v-else-if="choosen === 2" @click="changeRingtone()" class="waves-effect waves-light btn-large">
-                                    <i class="material-icons left">arrow_forward</i>
-                                    Valider
-                                </a>
-                                <div key="3" v-else>
-                                    <h3>
-                                        Sonnerie changée !
-                                    </h3>
-                                </div>
-                            </transition>
-                            <div v-if="progress" class="progress">
-                                <div class="indeterminate"></div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col s6" id="listen">
-                        <h1>Ecouter la sonnerie</h1>
-                        <figure id="player">
-                            <audio controls src="/uploads/ringtone.mp3">
-                                Your browser does not support the
-                                <code>audio</code> element.
-                            </audio>
-                        </figure>
-                    </div>
-                </div>
-            </transition>
+      <nav>
+        <div class="nav-wrapper">
+          <a class="brand-logo">Nitrogeno</a>
         </div>
+      </nav>
+      <div id="app">
+        <transition name="fade" mode="out-in">
+          <div key="log" v-if="!isLogged" class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input
+                    v-model="login"
+                    placeholder="login"
+                    type="text"
+                    class="validate"
+                  />
+                </div>
+                <div class="input-field col s6">
+                  <input
+                    v-model="password"
+                    placeholder="mot de passe"
+                    type="password"
+                    class="validate"
+                    v-on:keydown.enter="log()"
+                  />
+                </div>
+              </div>
+            </form>
+            <button @click="log()" class="btn waves-effect waves-light">
+              Connexion
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+          <div key="ui" class="row" v-else>
+            <div class="col s6">
+              <form enctype="multipart/form-data" novalidate>
+                <h1>Changer la sonnerie</h1>
+                <transition name="fade" mode="out-in">
+                  <div key="1" v-if="choosen === 1">
+                    <label for="file" class="label-file"
+                      >Choisir une nouvelle sonnerie</label
+                    >
+                    <input
+                      class="input-file"
+                      name="music"
+                      type="file"
+                      id="file"
+                      ref="myFiles"
+                      class="custom-file-input"
+                      @change="previewFiles"
+                      multiple
+                    />
+                  </div>
+                  <a
+                    key="2"
+                    v-else-if="choosen === 2"
+                    @click="changeRingtone()"
+                    class="waves-effect waves-light btn-large"
+                  >
+                    <i class="material-icons left">arrow_forward</i>
+                    Valider
+                  </a>
+                  <div key="3" v-else>
+                    <h3>
+                      Sonnerie changée !
+                    </h3>
+                  </div>
+                </transition>
+                <div v-if="progress" class="progress">
+                  <div class="indeterminate"></div>
+                </div>
+              </form>
+            </div>
+            <div class="col s6" id="listen">
+              <h1>Ecouter la sonnerie</h1>
+              <figure id="player">
+                <audio controls src="/uploads/ringtone.mp3">
+                  Your browser does not support the
+                  <code>audio</code> element.
+                </audio>
+              </figure>
+            </div>
+          </div>
+        </transition>
+      </div>
     </div>
     <script src="./js/materialize.js"></script>
     <script src="./js/main.js"></script>
-</body>
-
+  </body>
 </html>

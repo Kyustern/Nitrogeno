@@ -9,23 +9,23 @@ let vm = new Vue({
     progress: false
   },
   methods: {
-    reloadPlayer() {
-      const container = document.getElementById("player");
-      const content = container.innerHTML;
-      container.innerHTML = content;
+    reloadPlayer () {
+      const container = document.getElementById('player')
+      const content = container.innerHTML
+      container.innerHTML = content
     },
-    async log() {
+    async log () {
       const res = await axios.post('/api/auth', {
         login: this.login,
         password: this.password
       })
       this.isLogged = res.data
     },
-    previewFiles() {
+    previewFiles () {
       this.files = this.$refs.myFiles.files
       this.choosen = 2
     },
-    async changeRingtone() {
+    async changeRingtone () {
       if (this.files.lenght === 0) {
         return null
       }

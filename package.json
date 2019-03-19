@@ -7,8 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js"
   },
-  "author": "",
+  "author": "louissalvet",
   "license": "ISC",
+  "standard": {
+    "globals": [
+      "fetch",
+      "FormData",
+      "axios",
+      "Vue"
+    ]
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
