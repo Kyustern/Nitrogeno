@@ -1,4 +1,5 @@
-let vm = new Vue({
+/* eslint no-new: */
+new Vue({
   el: '#app',
   data: {
     files: [],
